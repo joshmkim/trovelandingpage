@@ -33,4 +33,5 @@ export const mobileAssets: TroveFeatureAssets & {
 };
 
 export const MOBILE_FRAME_W = 1045;
-export const MOBILE_FRAME_H = 4944;
+// Keep this close to the bottom-most element to avoid blank space.
+export const MOBILE_FRAME_H = 3900;

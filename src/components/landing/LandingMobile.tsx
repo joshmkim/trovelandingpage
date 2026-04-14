@@ -13,10 +13,11 @@ type MobileSection = "features" | "faq" | "contact";
 
 // Mobile frame doesn't include dedicated FAQ/Contact sections in this node,
 // so we map them to the closest content blocks present in the design.
+const MOBILE_CONTENT_SHIFT_Y = 300;
 const MOBILE_SECTION_Y: Record<MobileSection, number> = {
-  features: 1214,
-  faq: 1928,
-  contact: 3337,
+  features: 1214 + MOBILE_CONTENT_SHIFT_Y,
+  faq: 1928 + MOBILE_CONTENT_SHIFT_Y,
+  contact: 3337 + MOBILE_CONTENT_SHIFT_Y,
 };
 
 function MobileCanvas({
@@ -162,8 +163,8 @@ function MobileCanvas({
           </a>
         </div>
       </div>
-      <div className="absolute left-[23px] top-[1101px] h-[244px] w-[996px] bg-white blur-[50px]" />
-      <div className="absolute left-[calc(50%+3px)] top-[1214px] flex w-[769px] -translate-x-1/2 flex-col items-end justify-center gap-[25px]">
+      <div className="absolute left-[23px] top-[1401px] h-[244px] w-[996px] bg-white blur-[50px]" />
+      <div className="absolute left-[calc(50%+3px)] top-[1514px] flex w-[769px] -translate-x-1/2 flex-col items-end justify-center gap-[25px]">
         <div className="relative flex w-full shrink-0 flex-col items-end gap-[15px] font-medium">
           <p className="relative w-full shrink-0 font-mono text-[16px] uppercase leading-[1.11] text-[#718d53]">
             features
@@ -195,7 +196,7 @@ function MobileCanvas({
           </div>
         </div>
       </div>
-      <div className="absolute left-[269px] top-[1928px] flex w-[534px] flex-col gap-[20px] font-medium">
+      <div className="absolute left-[269px] top-[2228px] flex w-[534px] flex-col gap-[20px] font-medium">
         <p
           className="w-full text-[35px] leading-normal text-[#2c2b2a]"
           style={{ fontVariationSettings: "'wdth' 100" }}
@@ -208,9 +209,9 @@ function MobileCanvas({
           cafe.
         </p>
       </div>
-      <FeatureVisual assets={a} className="absolute left-[calc(50%+0.5px)] top-[1548px] flex h-[325px] w-[508px] -translate-x-1/2 flex-col items-center gap-[100px] overflow-hidden rounded-[20px] border border-solid border-[rgba(154,149,139,0.25)] bg-[#fdfbf8] p-[25px]" />
-      <FeatureVisual assets={a} className="absolute left-[calc(50%+6.5px)] top-[2262px] flex h-[325px] w-[508px] -translate-x-1/2 items-start justify-center gap-[10px] overflow-hidden rounded-[20px] border border-solid border-[rgba(154,149,139,0.25)] bg-[#fdfbf8] p-[25px]" property1="Feature2" />
-      <div className="absolute left-[275px] top-[2642px] flex w-[534px] flex-col gap-[20px] font-medium">
+      <FeatureVisual assets={a} className="absolute left-[calc(50%+0.5px)] top-[1848px] flex h-[325px] w-[508px] -translate-x-1/2 flex-col items-center gap-[100px] overflow-hidden rounded-[20px] border border-solid border-[rgba(154,149,139,0.25)] bg-[#fdfbf8] p-[25px]" />
+      <FeatureVisual assets={a} className="absolute left-[calc(50%+6.5px)] top-[2562px] flex h-[325px] w-[508px] -translate-x-1/2 items-start justify-center gap-[10px] overflow-hidden rounded-[20px] border border-solid border-[rgba(154,149,139,0.25)] bg-[#fdfbf8] p-[25px]" property1="Feature2" />
+      <div className="absolute left-[275px] top-[2942px] flex w-[534px] flex-col gap-[20px] font-medium">
         <p
           className="w-full shrink-0 text-[35px] leading-normal text-[#2c2b2a]"
           style={{ fontVariationSettings: "'wdth' 100" }}
@@ -225,8 +226,8 @@ function MobileCanvas({
           becomes clear and actionable so you’re not relying on guesswork, and have more time to run your cafe.
         </p>
       </div>
-      <FeatureVisual assets={a} className="absolute left-[calc(50%+6.5px)] top-[2957px] flex h-[325px] w-[508px] -translate-x-1/2 flex-col items-start gap-[25px] overflow-hidden rounded-[20px] border border-solid border-[rgba(154,149,139,0.25)] bg-white p-[25px]" property1="Feature3" />
-      <div className="absolute left-[calc(50%+6.5px)] top-[3337px] flex w-[534px] -translate-x-1/2 flex-col gap-[20px] font-medium">
+      <FeatureVisual assets={a} className="absolute left-[calc(50%+6.5px)] top-[3257px] flex h-[325px] w-[508px] -translate-x-1/2 flex-col items-start gap-[25px] overflow-hidden rounded-[20px] border border-solid border-[rgba(154,149,139,0.25)] bg-white p-[25px]" property1="Feature3" />
+      <div className="absolute left-[calc(50%+6.5px)] top-[3637px] flex w-[534px] -translate-x-1/2 flex-col gap-[20px] font-medium">
         <p
           className="relative w-full shrink-0 text-[35px] leading-normal text-[#2c2b2a]"
           style={{ fontVariationSettings: "'wdth' 100" }}
