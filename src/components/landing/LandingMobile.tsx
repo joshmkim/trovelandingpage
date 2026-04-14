@@ -5,7 +5,27 @@ import { MOBILE_FRAME_H, MOBILE_FRAME_W, mobileAssets as a } from "./mobile-asse
 import { FeatureVisual } from "./feature-visual";
 import { LilDrink } from "./lil-drink";
 
-function MobileCanvas() {
+const CALENDLY_URL = "https://calendly.com/yihanhon-usc/30min";
+const EMAIL = "kimjosh@usc.edu";
+const MAILTO = `mailto:${EMAIL}`;
+
+type MobileSection = "features" | "faq" | "contact";
+
+// Mobile frame doesn't include dedicated FAQ/Contact sections in this node,
+// so we map them to the closest content blocks present in the design.
+const MOBILE_SECTION_Y: Record<MobileSection, number> = {
+  features: 1214,
+  faq: 1928,
+  contact: 3337,
+};
+
+function MobileCanvas({
+  activeSection,
+  onSelectSection,
+}: {
+  activeSection: MobileSection;
+  onSelectSection: (s: MobileSection) => void;
+}) {
   return (
     <div className="relative size-full bg-white">
       <div className="absolute left-[calc(50%+32px)] top-[729px] h-[603px] w-[929px] -translate-x-1/2">
@@ -15,11 +35,6 @@ function MobileCanvas() {
           src={a.inventorySpreadsheet}
         />
       </div>
-      <div className="absolute left-[1058px] top-[233px] h-[390px] w-[397px]">
-        <div className="absolute inset-[-51.28%_-50.38%]">
-          <img alt="" className="block size-full max-w-none" src={a.ellipse28} />
-        </div>
-      </div>
       <div className="absolute left-1/2 top-0 flex w-[1045px] -translate-x-1/2 items-center justify-between px-[75px] pb-[50px] pt-[75px]">
         <div className="relative h-[40px] w-[29px] shrink-0">
           <img alt="Trove" className="absolute inset-0 block size-full max-w-none" src={a.logoNav} />
@@ -27,46 +42,75 @@ function MobileCanvas() {
         <div className="relative flex shrink-0 items-center gap-[75px]">
           <div className="relative flex shrink-0 items-center gap-[20px]">
             <div className="relative size-[15px] shrink-0">
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src={a.selectFill} />
+              <img
+                alt=""
+                className="absolute inset-0 block size-full max-w-none"
+                src={activeSection === "features" ? a.selectFill : a.selectStroke}
+              />
             </div>
-            <p
-              className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] text-[#718d53]"
+            <button
+              type="button"
+              className={`relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] ${
+                activeSection === "features" ? "text-[#718d53]" : "text-[#9a958b]"
+              }`}
               style={{ fontVariationSettings: "'wdth' 100" }}
+              onClick={() => onSelectSection("features")}
             >
               Features
-            </p>
+            </button>
           </div>
           <div className="relative flex shrink-0 items-center gap-[20px]">
             <div className="relative size-[15px] shrink-0">
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src={a.selectStroke} />
+              <img
+                alt=""
+                className="absolute inset-0 block size-full max-w-none"
+                src={activeSection === "faq" ? a.selectFill : a.selectStroke}
+              />
             </div>
-            <p
-              className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] text-[#9a958b]"
+            <button
+              type="button"
+              className={`relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] ${
+                activeSection === "faq" ? "text-[#718d53]" : "text-[#9a958b]"
+              }`}
               style={{ fontVariationSettings: "'wdth' 100" }}
+              onClick={() => onSelectSection("faq")}
             >
               FAQ
-            </p>
+            </button>
           </div>
           <div className="relative flex shrink-0 items-center gap-[20px]">
             <div className="relative size-[15px] shrink-0">
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src={a.selectStroke} />
+              <img
+                alt=""
+                className="absolute inset-0 block size-full max-w-none"
+                src={activeSection === "contact" ? a.selectFill : a.selectStroke}
+              />
             </div>
-            <p
-              className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] text-[#9a958b]"
+            <button
+              type="button"
+              className={`relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] ${
+                activeSection === "contact" ? "text-[#718d53]" : "text-[#9a958b]"
+              }`}
               style={{ fontVariationSettings: "'wdth' 100" }}
+              onClick={() => onSelectSection("contact")}
             >
               Contact
-            </p>
+            </button>
           </div>
         </div>
-        <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#718d53] px-[15px] py-[5px]">
-          <p
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#718d53] px-[15px] py-[5px]"
+        >
+          <span
             className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#faf5dd]"
             style={{ fontVariationSettings: "'wdth' 100" }}
           >
             Book a demo
-          </p>
-        </div>
+          </span>
+        </a>
       </div>
       <div className="absolute left-1/2 top-[233px] flex w-[615px] -translate-x-1/2 flex-col items-center justify-center gap-[75px]">
         <div className="relative flex w-full shrink-0 flex-col items-center gap-[35px]">
@@ -92,22 +136,30 @@ function MobileCanvas() {
           </div>
         </div>
         <div className="relative flex shrink-0 items-center gap-[24px]">
-          <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#576e42] px-[15px] py-[5px]">
-            <p
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#576e42] px-[15px] py-[5px]"
+          >
+            <span
               className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#faf5dd]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               Get Started
-            </p>
-          </div>
-          <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#faf5dd] px-[15px] py-[5px]">
-            <p
+            </span>
+          </a>
+          <a
+            href={MAILTO}
+            className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#faf5dd] px-[15px] py-[5px]"
+          >
+            <span
               className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#576e42]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               Contact us
-            </p>
-          </div>
+            </span>
+          </a>
         </div>
       </div>
       <div className="absolute left-[23px] top-[1101px] h-[244px] w-[996px] bg-white blur-[50px]" />
@@ -195,6 +247,7 @@ function MobileCanvas() {
 
 export default function LandingMobile() {
   const [scale, setScale] = useState(1);
+  const [activeSection, setActiveSection] = useState<MobileSection>("features");
 
   useEffect(() => {
     const update = () => setScale(Math.min(1, window.innerWidth / MOBILE_FRAME_W));
@@ -204,6 +257,12 @@ export default function LandingMobile() {
   }, []);
 
   const scaledH = MOBILE_FRAME_H * scale;
+
+  const scrollToSection = (section: MobileSection) => {
+    setActiveSection(section);
+    const y = MOBILE_SECTION_Y[section];
+    window.scrollTo({ top: y * scale, behavior: "smooth" });
+  };
 
   return (
     <div className="w-full overflow-x-hidden bg-white" style={{ minHeight: scaledH }}>
@@ -224,7 +283,7 @@ export default function LandingMobile() {
             transformOrigin: "top left",
           }}
         >
-          <MobileCanvas />
+          <MobileCanvas activeSection={activeSection} onSelectSection={scrollToSection} />
         </div>
       </div>
     </div>

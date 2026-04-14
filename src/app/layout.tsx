@@ -17,6 +17,9 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: "Trove",
   description: "Back-of-house platform built for perishable-first businesses.",
+  icons: {
+    icon: "/figma/desktop-logoNav.svg",
+  },
 };
 
 export default function RootLayout({

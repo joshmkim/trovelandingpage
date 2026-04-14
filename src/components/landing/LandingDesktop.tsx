@@ -6,14 +6,27 @@ import { DesktopFaq } from "./DesktopFaq";
 import { FeatureVisual } from "./feature-visual";
 import { LilDrink } from "./lil-drink";
 
-function DesktopCanvas() {
+const CALENDLY_URL = "https://calendly.com/yihanhon-usc/30min";
+const EMAIL = "kimjosh@usc.edu";
+const MAILTO = `mailto:${EMAIL}`;
+
+type DesktopSection = "features" | "faq" | "contact";
+
+const DESKTOP_SECTION_Y: Record<DesktopSection, number> = {
+  features: 993,
+  faq: 2607,
+  contact: 4136,
+};
+
+function DesktopCanvas({
+  activeSection,
+  onSelectSection,
+}: {
+  activeSection: DesktopSection;
+  onSelectSection: (s: DesktopSection) => void;
+}) {
   return (
     <div className="relative size-full bg-white">
-      <div className="absolute left-[1048px] top-[263px] h-[390px] w-[397px]">
-        <div className="absolute inset-[-51.28%_-50.38%]">
-          <img alt="" className="block size-full max-w-none" src={d.ellipse28} />
-        </div>
-      </div>
       <div className="absolute left-[calc(50%-2px)] top-[993px] flex w-[962px] -translate-x-1/2 flex-col items-end justify-center gap-[25px]">
         <div className="relative flex w-full shrink-0 flex-col items-end gap-[15px] font-medium">
           <p className="relative w-full min-w-full shrink-0 font-mono text-[18px] uppercase leading-[1.11] text-[#718d53]">
@@ -128,7 +141,7 @@ function DesktopCanvas() {
         className="absolute left-[calc(50%-122px)] top-[3694px] whitespace-nowrap text-[25px] font-medium leading-[1.11] text-[#9a958b]"
         style={{ fontVariationSettings: "'wdth' 100" }}
       >
-        demo video snippet?
+        Demo Video Coming Soon
       </p>
       <div className="absolute left-[337px] top-[4136px] flex w-[837px] flex-col items-center gap-[75px]">
         <div className="relative flex w-full shrink-0 flex-col items-center gap-[25px] text-center font-medium">
@@ -152,22 +165,30 @@ function DesktopCanvas() {
           </p>
         </div>
         <div className="relative flex shrink-0 items-center gap-[24px]">
-          <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#718d53] px-[15px] py-[5px]">
-            <p
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#718d53] px-[15px] py-[5px]"
+          >
+            <span
               className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#faf5dd]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               Book a demo
-            </p>
-          </div>
-          <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#faf5dd] px-[15px] py-[5px]">
-            <p
+            </span>
+          </a>
+          <a
+            href={MAILTO}
+            className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#faf5dd] px-[15px] py-[5px]"
+          >
+            <span
               className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#718d53]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               Shoot us an email
-            </p>
-          </div>
+            </span>
+          </a>
         </div>
       </div>
       <div className="absolute left-1/2 top-0 flex w-[1512px] -translate-x-1/2 items-center justify-between px-[75px] pb-[50px] pt-[75px]">
@@ -177,46 +198,75 @@ function DesktopCanvas() {
         <div className="relative flex shrink-0 items-center gap-[75px]">
           <div className="relative flex shrink-0 items-center gap-[20px]">
             <div className="relative size-[15px] shrink-0">
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src={d.selectFill} />
+              <img
+                alt=""
+                className="absolute inset-0 block size-full max-w-none"
+                src={activeSection === "features" ? d.selectFill : d.selectStroke}
+              />
             </div>
-            <p
-              className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] text-[#718d53]"
+            <button
+              type="button"
+              className={`relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] ${
+                activeSection === "features" ? "text-[#718d53]" : "text-[#9a958b]"
+              }`}
               style={{ fontVariationSettings: "'wdth' 100" }}
+              onClick={() => onSelectSection("features")}
             >
               Features
-            </p>
+            </button>
           </div>
           <div className="relative flex shrink-0 items-center gap-[20px]">
             <div className="relative size-[15px] shrink-0">
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src={d.selectStroke} />
+              <img
+                alt=""
+                className="absolute inset-0 block size-full max-w-none"
+                src={activeSection === "faq" ? d.selectFill : d.selectStroke}
+              />
             </div>
-            <p
-              className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] text-[#9a958b]"
+            <button
+              type="button"
+              className={`relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] ${
+                activeSection === "faq" ? "text-[#718d53]" : "text-[#9a958b]"
+              }`}
               style={{ fontVariationSettings: "'wdth' 100" }}
+              onClick={() => onSelectSection("faq")}
             >
               FAQ
-            </p>
+            </button>
           </div>
           <div className="relative flex shrink-0 items-center gap-[20px]">
             <div className="relative size-[15px] shrink-0">
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src={d.selectStroke} />
+              <img
+                alt=""
+                className="absolute inset-0 block size-full max-w-none"
+                src={activeSection === "contact" ? d.selectFill : d.selectStroke}
+              />
             </div>
-            <p
-              className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] text-[#9a958b]"
+            <button
+              type="button"
+              className={`relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.11] ${
+                activeSection === "contact" ? "text-[#718d53]" : "text-[#9a958b]"
+              }`}
               style={{ fontVariationSettings: "'wdth' 100" }}
+              onClick={() => onSelectSection("contact")}
             >
               Contact
-            </p>
+            </button>
           </div>
         </div>
-        <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#718d53] px-[15px] py-[5px]">
-          <p
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#718d53] px-[15px] py-[5px]"
+        >
+          <span
             className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#faf5dd]"
             style={{ fontVariationSettings: "'wdth' 100" }}
           >
             Book a demo
-          </p>
-        </div>
+          </span>
+        </a>
       </div>
       <DesktopFaq assets={d} />
       <div className="absolute left-1/2 top-[4728px] flex w-[1212px] -translate-x-1/2 items-center justify-between">
@@ -267,22 +317,30 @@ function DesktopCanvas() {
           </div>
         </div>
         <div className="relative flex shrink-0 items-center gap-[24px]">
-          <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#576e42] px-[15px] py-[5px]">
-            <p
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#576e42] px-[15px] py-[5px]"
+          >
+            <span
               className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#faf5dd]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               Get Started
-            </p>
-          </div>
-          <div className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#faf5dd] px-[15px] py-[5px]">
-            <p
+            </span>
+          </a>
+          <a
+            href={MAILTO}
+            className="relative flex shrink-0 items-center justify-center rounded-[10px] bg-[#faf5dd] px-[15px] py-[5px]"
+          >
+            <span
               className="relative shrink-0 whitespace-nowrap text-[20px] font-medium leading-[1.5] text-[#576e42]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               Contact us
-            </p>
-          </div>
+            </span>
+          </a>
         </div>
       </div>
       <div className="absolute left-[calc(50%+521.5px)] top-[223px] h-[603px] w-[929px] -translate-x-1/2">
@@ -298,6 +356,7 @@ function DesktopCanvas() {
 
 export default function LandingDesktop() {
   const [scale, setScale] = useState(1);
+  const [activeSection, setActiveSection] = useState<DesktopSection>("features");
 
   useEffect(() => {
     const update = () => setScale(Math.min(1, window.innerWidth / DESKTOP_FRAME_W));
@@ -307,6 +366,12 @@ export default function LandingDesktop() {
   }, []);
 
   const scaledH = DESKTOP_FRAME_H * scale;
+
+  const scrollToSection = (section: DesktopSection) => {
+    setActiveSection(section);
+    const y = DESKTOP_SECTION_Y[section];
+    window.scrollTo({ top: y * scale, behavior: "smooth" });
+  };
 
   return (
     <div className="w-full overflow-x-hidden bg-white" style={{ minHeight: scaledH }}>
@@ -327,7 +392,7 @@ export default function LandingDesktop() {
             transformOrigin: "top left",
           }}
         >
-          <DesktopCanvas />
+          <DesktopCanvas activeSection={activeSection} onSelectSection={scrollToSection} />
         </div>
       </div>
     </div>
