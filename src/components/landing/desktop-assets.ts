@@ -41,4 +41,4 @@ export const desktopAssets: DesktopPageAssets = {
 };
 
 export const DESKTOP_FRAME_W = 1512;
-export const DESKTOP_FRAME_H = 4944;
+export const DESKTOP_FRAME_H = 4300;

@@ -15,7 +15,7 @@ type DesktopSection = "features" | "faq" | "contact";
 const DESKTOP_SECTION_Y: Record<DesktopSection, number> = {
   features: 993,
   faq: 2607,
-  contact: 4136,
+  contact: 3458,
 };
 
 function DesktopCanvas({
@@ -136,14 +136,7 @@ function DesktopCanvas({
           />
         </div>
       </div>
-      <div className="absolute left-[calc(50%-0.5px)] top-[3458px] h-[500px] w-[1165px] -translate-x-1/2 rounded-[20px] bg-[#d9d9d9] opacity-50" />
-      <p
-        className="absolute left-[calc(50%-122px)] top-[3694px] whitespace-nowrap text-[25px] font-medium leading-[1.11] text-[#9a958b]"
-        style={{ fontVariationSettings: "'wdth' 100" }}
-      >
-        Demo Video Coming Soon
-      </p>
-      <div className="absolute left-[337px] top-[4136px] flex w-[837px] flex-col items-center gap-[75px]">
+      <div className="absolute left-[337px] top-[3458px] flex w-[837px] flex-col items-center gap-[75px]">
         <div className="relative flex w-full shrink-0 flex-col items-center gap-[25px] text-center font-medium">
           <div className="relative flex w-full shrink-0 flex-col items-start gap-[15px]">
             <p className="relative w-full shrink-0 font-mono text-[18px] uppercase leading-[1.11] text-[#718d53]">
@@ -269,7 +262,7 @@ function DesktopCanvas({
         </a>
       </div>
       <DesktopFaq assets={d} />
-      <div className="absolute left-1/2 top-[4728px] flex w-[1212px] -translate-x-1/2 items-center justify-between">
+      <div className="absolute left-1/2 top-[4050px] flex w-[1212px] -translate-x-1/2 items-center justify-between">
         <div className="relative flex w-[481px] shrink-0 flex-col items-start gap-[25px]">
           <div className="relative h-[35px] w-[154px] shrink-0">
             <img alt="Trove" className="absolute inset-0 block size-full max-w-none" src={d.logoFooter} />
