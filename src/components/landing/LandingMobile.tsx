@@ -5,7 +5,7 @@ import { MOBILE_FRAME_H, MOBILE_FRAME_W, mobileAssets as a } from "./mobile-asse
 import { FeatureVisual } from "./feature-visual";
 import { LilDrink } from "./lil-drink";
 
-const CALENDLY_URL = "https://calendly.com/yihanhon-usc/30min";
+const CALENDLY_URL = "https://calendly.com/d/ctyk-9ry-wxs/trove-demo";
 const EMAIL = "kimjosh@usc.edu";
 const MAILTO = `mailto:${EMAIL}`;
 
